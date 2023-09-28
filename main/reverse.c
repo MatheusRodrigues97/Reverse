@@ -2,7 +2,7 @@
 
 int	validacao ( char *string);
 int	menu(char *rgv[]);
-char	ft_cripto(char	*frase);
+void	ft_cripto(char	*frase);
 
 	
 int 	main( int argc , char *argv[])
@@ -26,6 +26,17 @@ int 	main( int argc , char *argv[])
 	}
 
 }
+void ft_cripto(char *frase) {
+    while (*frase != '\0') {
+        if (*frase >= 'a' && *frase <= 'z') {
+            *frase = (*frase - 'a' + 1) % 26 + 'a';
+        } else if (*frase >= 'A' && *frase <= 'Z') {
+            *frase = (*frase - 'A' + 1) % 26 + 'A';
+        }
+        frase++;
+    }
+}
+
 
 int	ft_validacao (char *string)
 {
@@ -43,23 +54,17 @@ int	ft_validacao (char *string)
 	return validar;
 }
 
-int	menu(char *rgv[])
+int menu(char *argv[]) 
 {
-	char *opcao;
-        char *frase;
+    char *opcao = argv[1];  // Atribui o primeiro argumento a 'opcao'
+    char *frase = argv[2];  // Atribui o segundo argumento a 'frase'
 
-        char *opcao = rgv[1];
-        char *frase = rgv[2];
+    int validadeOpcao = validacao(opcao);  // Assume que 'validacao' valida 'opcao'
+    int validadeFrase = validacao(frase);  // Assume que 'validacao' valida 'frase'
 
-        validadeOpcao = validacao(*opcao);
-        validadeFrase = validacao(*frase);
-
-	if(validadeOpção == 1 && validadeFrase == 1)
-	{
-		return 1;
-	}
-	else
-	{
-		return 0;
-	}
+    if (validadeOpcao == 1 && validadeFrase == 1) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
