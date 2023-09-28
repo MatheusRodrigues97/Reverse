@@ -1,45 +1,65 @@
 #include <stdio.h>
 
-char	validacao ( char *string);
+int	validacao ( char *string);
+int	menu(char *rgv[]);
+char	ft_cripto(char	*frase);
 
-int main(int argc, char* argv[]) 
+	
+int 	main( int argc , char *argv[])
 {	
-	int	i;
-	char	resto;
+	int	resul;
 
-	i = 0;
-	if (argc =! 3)
+	if(argc != 3)
 	{
-		prinf(" Falta argumentos para a função ");
+		printf(" Erro de entrada de argumentos");
 	}
 	
-	while ( argc < 4)
+	resul = menu(char *rgv[]);
+
+	if(resul == 1)
 	{
-		i =+1 
-		
-		ft_validacao(argv[i]);
-		argc = i;
+		ft_cripto(*argv[2]);
 	}
+	else
+	{
+		printf("Erro de opção e frase para realizar a criptografia");
+	}
+
 }
 
-
-char	ft_validacao(char *string)
+int	ft_validacao (char *string)
 {
-	char	resto;
-	char	resto1;
+	int	validar;
 
-	while ( *string != '\0')
+	validar = 1;
+	while (*string != '\0') {
+        if ((*string < '0' || *string > '9') &&
+            (*string < 'a' || *string > 'z') &&
+            (*string < 'A' || *string > 'Z')) {
+            validar = 0;
+        }
+        string++;  
+    }
+	return validar;
+}
+
+int	menu(char *rgv[])
+{
+	char *opcao;
+        char *frase;
+
+        char *opcao = rgv[1];
+        char *frase = rgv[2];
+
+        validadeOpcao = validacao(*opcao);
+        validadeFrase = validacao(*frase);
+
+	if(validadeOpção == 1 && validadeFrase == 1)
 	{
-		if ( *string < 'a' or *string > 'z')
-		{
-			if (*string < 'A' or *string > 'Z')
-			{
-				if (*string < '0' or *string > '9')
-				{
-					resto = "F";
-				}
-			}
-		}
-		string ++;
+		return 1;
 	}
-	resto = "S";
+	else
+	{
+		return 0;
+	}
+}
